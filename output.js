@@ -6,11 +6,26 @@ const objectsData = {
     para3: "Plastics should be recycled through proper recycling centers that can process different plastic types, converting them into new products.", 
     image: "path_to_object1_image.jpg"
   },
+  "steelBowl": {
+    title: "Steel Bowl: Decomposition, Reuse, and Recycling",
+    para1: "Steel bowls can last for years in landfills.",
+    para2: "They can be reused for cooking or serving.",
+    para3: "Steel bowls should be recycled to recover steel.",
+    image: "path_to_object1_image.jpg"
+  },
   "paper": {
     title: "Paper Waste: Decomposition, Reuse, and Recycling",
     para1: "Paper decomposes within 2 to 6 weeks in nature, especially if it is exposed to moisture and heat.",
     para2: "Paper can be reused by turning it into notebooks, wrapping material, or shredded to be used for packaging.",
     para3: "Paper is easily recyclable and should be placed in designated paper recycling bins where it can be turned into new paper products.", 
+    image: "path_to_object1_image.jpg"
+  },
+  
+  "metal Spoon": {
+    title: "Metal Spoon: Decomposition, Reuse, and Recycling",
+    para1: "Metal spoons can persist for many years in landfills.",
+    para2: "They can be reused for serving food.",
+    para3: "Metal spoons should be recycled with metal waste.",
     image: "path_to_object1_image.jpg"
   },
   "glass": {
@@ -1560,7 +1575,7 @@ const objectsData = {
     title: "Plastic Fork: Decomposition, Reuse, and Recycling",
     para1: "Plastic forks can persist in landfills for hundreds of years.",
     para2: "They can be reused for art projects or DIY crafts.",
-    para3: "Plastic forks should be recycled if accepted in local programs."
+    para3: "Plastic forks sho uld be recycled if accepted in local programs."
   },
   "foodContainer": {
     title: "Food Container: Decomposition, Reuse, and Recycling",
@@ -1805,40 +1820,34 @@ const objectsData = {
 };
 
 
-// Function to fetch object details based on user input
 function fetchObjectDetails() {
-  const objectName = document.getElementById("objectName").value.toLowerCase();
+  const objectName = document.getElementById("objectName").value.trim();
 
   // Check if the object exists in the data
   if (objectsData[objectName]) {
     const object = objectsData[objectName];
 
-    // Update each element using DOM manipulation
+    // Update the HTML elements with object data
     document.getElementById('title').textContent = object.title;
     document.getElementById('para1').textContent = object.para1;
     document.getElementById('para2').textContent = object.para2;
     document.getElementById('para3').textContent = object.para3;
     document.getElementById('image').setAttribute('src', object.image);
     document.getElementById('image').setAttribute('alt', object.title);
+
+    // Make the detail div visible
+    document.getElementById("details").style.display = "block";
   } else {
-    // Clear content if no object found
-    document.getElementById('title').textContent = '';
-    document.getElementById('para1').textContent = '';
-    document.getElementById('para2').textContent = '';
-    document.getElementById('para3').textContent = '';
-    document.getElementById('image').setAttribute('src', '');
-    document.getElementById('image').setAttribute('alt', '');
+    localStorage.setItem('Name', objectName);
+    // If object not found, hide the detail div
+    document.getElementById("details").style.display = "none";
   }
 }
 
 // Add event listener for "Enter" key press on input
 document.getElementById("objectName").addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
+  if (event.key === "Enter" && this.value.trim() !== "") {
     fetchObjectDetails();
+    this.value = ''; // Clear the input field after submission
   }
-});
-
-// Add event listener for click on the div with id 'x'
-document.getElementById("x").addEventListener("click", function() {
-  fetchObjectDetails();
 });

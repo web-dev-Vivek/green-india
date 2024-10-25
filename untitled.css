@@ -173,16 +173,14 @@ a {
   align-items: center;
   font-size: 40px;
   font-weight: 900;
+  margin: 3vh 0px;
 }
 #details p{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 7px 20px;
+  font-weight: 900;
 }
 #details img{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 7px 20px;
 }
 
 /* Footer */
